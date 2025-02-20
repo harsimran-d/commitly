@@ -24,7 +24,7 @@ const Navbar = () => {
           {/* Logo */}
           <div className="flex flex-shrink-0 items-center">
             <Link href="/" className="text-xl font-bold text-white">
-              AAAS
+              Commitly
             </Link>
           </div>
 
@@ -35,9 +35,9 @@ const Navbar = () => {
               "Features",
               "How It Works",
               "Pricing",
-              "Testimonials",
+              // "Testimonials",
               "FAQ",
-              "Integrations",
+              // "Integrations",
             ].map((item) => (
               <Link
                 key={item}
@@ -47,9 +47,9 @@ const Navbar = () => {
                 {item}
               </Link>
             ))}
-            <button className="bg-primary hover:bg-secondary rounded-md px-4 py-2 text-white transition-colors duration-200">
+            {/* <button className="bg-primary hover:bg-secondary rounded-md px-4 py-2 text-white transition-colors duration-200">
               Start Now
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}
@@ -104,9 +104,9 @@ const Navbar = () => {
                   {item}
                 </Link>
               ))}
-              <button className="bg-primary hover:bg-secondary w-full rounded-md px-4 py-2 text-center text-white transition-colors duration-200">
+              {/* <button className="bg-primary hover:bg-secondary w-full rounded-md px-4 py-2 text-center text-white transition-colors duration-200">
                 Start Now
-              </button>
+              </button> */}
             </div>
           </motion.div>
         )}

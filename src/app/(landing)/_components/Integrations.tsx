@@ -84,11 +84,11 @@ const Integrations = () => {
             Ready to Get Started?
           </h3>
           <p className="mb-6 text-neutral-300">
-            Join thousands of successful professionals using AAAS
+            Join thousands of successful professionals using Commitly
           </p>
           <a
             href="#pricing"
-            className="bg-primary hover:bg-secondary inline-flex items-center justify-center rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-secondary"
           >
             Start Your Journey
             <svg

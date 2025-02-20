@@ -1,7 +1,6 @@
 "use client";
 
 import { motion } from "motion/react";
-import Link from "next/link";
 import Image from "next/image";
 
 const Hero = () => {
@@ -54,49 +53,20 @@ const Hero = () => {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, ease: "easeOut", delay: 0.4 }}
         >
-          <Link
-            href="#pricing"
-            className="hover:bg-secondary w-full transform rounded-lg bg-gray-50 px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 sm:w-auto"
-          >
-            Start Now
-          </Link>
-          <Link
+          {/* <MailchimpDialog>
+            <div className="w-full transform rounded-lg bg-gray-50 px-8 py-4 font-semibold text-black transition-all duration-300 hover:scale-105 hover:bg-secondary sm:w-auto">
+              Join Waitlist
+            </div>
+          </MailchimpDialog> */}
+
+          {/* <Link
             href="#features"
             className="w-full rounded-lg bg-neutral-800 px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-neutral-700 sm:w-auto"
           >
             Learn More
-          </Link>
+          </Link> */}
         </motion.div>
-
-        {/* Trust Badges */}
-        <motion.div
-          className="mt-12 flex flex-wrap items-center justify-center gap-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6, ease: "easeOut", delay: 0.6 }}
-        ></motion.div>
       </div>
-
-      {/* Animated Gradient Accent */}
-      <div className="from-primary via-accent to-primary animate-gradient absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r bg-[length:200%_200%]"></div>
-
-      {/* Gradient Animation */}
-      <style jsx>{`
-        @keyframes gradient {
-          0% {
-            background-position: 0% 50%;
-          }
-          50% {
-            background-position: 100% 50%;
-          }
-          100% {
-            background-position: 0% 50%;
-          }
-        }
-        .animate-gradient {
-          animation: gradient 3s ease infinite;
-        }
-      `}</style>
     </section>
   );
 };

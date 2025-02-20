@@ -9,7 +9,7 @@ const testimonials = [
     role: "Entrepreneur",
     image: "https://cal.com/ewa.jpg",
     quote:
-      "AAAS helped me stay focused on my business goals. The daily check-ins and human accountability made all the difference. I've achieved 3x more in the last quarter!",
+      "Commitly helped me stay focused on my business goals. The daily check-ins and human accountability made all the difference. I've achieved 3x more in the last quarter!",
     rating: 5,
     delay: 0,
   },
@@ -19,7 +19,7 @@ const testimonials = [
     image:
       "https://www.datocms-assets.com/77432/1734384543-man-profile-picture-4.jpg",
     quote:
-      "The automated reminders kept me consistent with my workout routine. I've never stuck to a fitness plan this long before. Thank you AAAS!",
+      "The automated reminders kept me consistent with my workout routine. I've never stuck to a fitness plan this long before. Thank you Commitly!",
     rating: 5,
     delay: 0.2,
   },
@@ -50,7 +50,7 @@ const Testimonials = () => {
             Success Stories
           </h2>
           <p className="mx-auto max-w-2xl text-lg text-neutral-300">
-            Join thousands who have transformed their lives with AAAS
+            Join thousands who have transformed their lives with Commitly
           </p>
         </motion.div>
 
@@ -84,7 +84,7 @@ const Testimonials = () => {
                 </div>
               </div>
               <p className="mb-4 text-neutral-300">{testimonial.quote}</p>
-              <div className="text-primary flex">
+              <div className="flex text-primary">
                 {"★".repeat(testimonial.rating)}
               </div>
             </motion.div>
@@ -100,7 +100,7 @@ const Testimonials = () => {
         >
           <a
             href="#pricing"
-            className="bg-primary hover:bg-secondary inline-flex animate-pulse items-center justify-center rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300"
+            className="inline-flex animate-pulse items-center justify-center rounded-lg bg-primary px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-secondary"
           >
             Join Our Success Stories
             <svg

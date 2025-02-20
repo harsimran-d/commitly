@@ -3,9 +3,9 @@ import Hero from "./_components/Hero";
 import Features from "./_components/Features";
 import HowItWorks from "./_components/HowItWorks";
 import Pricing from "./_components/Pricing";
-import Testimonials from "./_components/Testimonials";
+// import Testimonials from "./_components/Testimonials";
 import FAQ from "./_components/FAQ";
-import Integrations from "./_components/Integrations";
+// import Integrations from "./_components/Integrations";
 
 export default function Home() {
   return (
@@ -14,9 +14,9 @@ export default function Home() {
       <Features />
       <HowItWorks />
       <Pricing />
-      <Testimonials />
+      {/* <Testimonials /> */}
       <FAQ />
-      <Integrations />
+      {/* <Integrations /> */}
     </div>
   );
 }

@@ -80,7 +80,7 @@ const FeaturesSection = () => {
         </div>
 
         {/* CTA Bar */}
-        <motion.div
+        {/* <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
@@ -105,7 +105,7 @@ const FeaturesSection = () => {
               />
             </svg>
           </a>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

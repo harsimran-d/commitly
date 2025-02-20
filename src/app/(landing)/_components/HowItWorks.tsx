@@ -40,7 +40,7 @@ const HowItWorks = () => {
         >
           <h2 className="mb-4 text-3xl font-bold md:text-4xl">How It Works</h2>
           <p className="mx-auto max-w-2xl text-lg text-neutral-300">
-            Get started with AAAS in three simple steps
+            Get started with Commitly in three simple steps
           </p>
         </motion.div>
 
@@ -63,13 +63,13 @@ const HowItWorks = () => {
                 }}
               >
                 {/* Step Number */}
-                <div className="bg-primary absolute -top-6 left-8 flex h-12 w-12 items-center justify-center rounded-full text-2xl font-bold">
+                <div className="absolute -top-6 left-8 flex h-12 w-12 items-center justify-center rounded-full bg-primary text-2xl font-bold">
                   {index + 1}
                 </div>
 
                 {/* Step Content */}
                 <div className="mt-6">
-                  <step.icon className="text-primary mb-4" />
+                  <step.icon className="mb-4 text-white" />
                   <h3 className="mb-3 text-xl font-semibold">{step.title}</h3>
                   <p className="text-neutral-300">{step.description}</p>
                 </div>
@@ -89,13 +89,14 @@ const HowItWorks = () => {
             Ready to Start Your Journey?
           </h3>
           <p className="mb-6 text-neutral-300">
-            Join thousands of others who are achieving their goals with AAAS.
+            Join thousands of others who are achieving their goals with
+            Commitly.
           </p>
           <a
-            href="#pricing"
-            className="bg-primary hover:bg-secondary inline-flex items-center justify-center rounded-lg px-8 py-4 font-semibold text-white transition-all duration-300"
+            href="/waitlist"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-[#333333]"
           >
-            Get Started Now
+            Join the Waitlist
             <svg
               className="ml-2 h-5 w-5"
               fill="none"

@@ -103,7 +103,7 @@ const FAQ = () => {
           ))}
         </div>
 
-        {/* Still Have Questions */}
+        {/* Still Have Questions
         <motion.div
           className="mt-16 text-center"
           initial={{ opacity: 0, y: 20 }}
@@ -132,7 +132,7 @@ const FAQ = () => {
               />
             </svg>
           </a>
-        </motion.div>
+        </motion.div> */}
       </div>
     </section>
   );

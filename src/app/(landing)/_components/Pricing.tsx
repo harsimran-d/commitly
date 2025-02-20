@@ -1,6 +1,7 @@
 "use client";
 
 import { motion } from "motion/react";
+import Link from "next/link";
 
 const pricingPlans = [
   {
@@ -68,7 +69,7 @@ const Pricing = () => {
               key={index}
               className={`rounded-2xl border p-8 ${
                 plan.highlight
-                  ? "bg-primary border-primary scale-105 text-black shadow-lg"
+                  ? "scale-105 border-primary bg-white text-black shadow-lg"
                   : "border-neutral-200 bg-neutral-50 text-black hover:shadow-xl"
               } transition-all duration-300`}
               initial={{ opacity: 0, y: 20 }}
@@ -93,7 +94,7 @@ const Pricing = () => {
                 {plan.features.map((feature, i) => (
                   <li key={i} className="flex items-center">
                     <svg
-                      className="text-primary mr-3 h-5 w-5"
+                      className="mr-3 h-5 w-5 text-primary"
                       fill="currentColor"
                       viewBox="0 0 20 20"
                     >
@@ -107,15 +108,17 @@ const Pricing = () => {
                   </li>
                 ))}
               </ul>
-              <button
-                className={`w-full rounded-lg px-6 py-3 font-semibold transition-colors duration-300 ${
-                  plan.highlight
-                    ? "bg-black text-white hover:bg-neutral-700"
-                    : "bg-neutral-800 text-white hover:bg-neutral-600"
-                }`}
-              >
-                {plan.price === "Custom" ? "Contact Us" : "Get Started"}
-              </button>
+              <Link href="/waitlist">
+                <button
+                  className={`w-full rounded-lg px-6 py-3 font-semibold transition-colors duration-300 ${
+                    plan.highlight
+                      ? "bg-black text-white hover:bg-neutral-700"
+                      : "bg-neutral-800 text-white hover:bg-neutral-600"
+                  }`}
+                >
+                  {plan.price === "Custom" ? "Join Waitlist" : "Join Waitlist"}
+                </button>
+              </Link>
             </motion.div>
           ))}
         </div>
@@ -129,7 +132,7 @@ const Pricing = () => {
         >
           <div className="inline-flex items-center text-neutral-600">
             <svg
-              className="text-primary mr-2 h-5 w-5"
+              className="mr-2 h-5 w-5 text-primary"
               fill="currentColor"
               viewBox="0 0 20 20"
             >
