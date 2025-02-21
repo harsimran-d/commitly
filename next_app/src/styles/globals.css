@@ -64,3 +64,22 @@
     @apply bg-background text-foreground;
   }
 }
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+@layer utilities {
+  .input-autofill:-webkit-autofill,
+  .input-autofill:-webkit-autofill:hover,
+  .input-autofill:-webkit-autofill:focus,
+  .input-autofill:-webkit-autofill:active {
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: var(--autofill-text-color, #dbd7dc);
+  }
+}
