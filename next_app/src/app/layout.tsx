@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import { Toaster } from "sonner";
-import { Analytics } from "@vercel/analytics/react";
+import { GoogleAnalytics } from "@next/third-parties/google";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -11,7 +11,7 @@ export default function RootLayout({
       <body>
         {children}
         <Toaster />
-        <Analytics />
+        <GoogleAnalytics gaId="G-5H6XB0CM71" />
       </body>
     </html>
   );
