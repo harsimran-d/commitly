@@ -14,8 +14,13 @@ const googleClient = new OAuth2Client(
 const userRouter = Router();
 
 userRouter.post("/signup", async (req, res) => {
-  const { username, email, password } = req.body;
-
+  const { email, otp } = req.body;
+  if (!email || !otp) {
+    res.status(400).json({
+      message: "email and otp are required",
+    });
+    return;
+  }
   const existingUser = await prisma.user.findFirst({
     where: { email },
   });
@@ -26,6 +31,15 @@ userRouter.post("/signup", async (req, res) => {
     });
     return;
   }
+  const valueFromRedis = await redis.get(email);
+  const { otp: otpFromRedis, type } = JSON.parse(valueFromRedis || "{}");
+  if (otpFromRedis !== otp || type !== "signup") {
+    res.status(401).json({
+      message: "Invalid OTP",
+    });
+    return;
+  }
+  await redis.del(email);
 
   const user = await prisma.user.create({
     data: {
@@ -47,7 +61,8 @@ userRouter.post("/signup", async (req, res) => {
 
 userRouter.post("/signin", async (req, res) => {
   const { email, otp } = req.body;
-
+  console.log("email", email);
+  console.log("otp", otp);
   const user = await prisma.user.findUnique({
     where: { email },
   });
@@ -57,14 +72,16 @@ userRouter.post("/signin", async (req, res) => {
     return;
   }
 
-  // otp from redis cache
-  const otpFromRedis = await redis.get(email);
+  const valueFromRedis = await redis.get(email);
+  const { otp: otpFromRedis, type } = JSON.parse(valueFromRedis || "{}");
 
-  if (otpFromRedis !== otp) {
+  if (otpFromRedis !== otp || type !== "signin") {
+    console.log("failing here ");
+    console.log(otpFromRedis, otp, type);
     res.status(401).json({ message: "Invalid OTP" });
     return;
   }
-
+  await redis.del(email);
   res.status(200).json({
     message: "User signed in successfully",
 
@@ -96,6 +113,7 @@ userRouter.post("/google-signin", async (req, res) => {
       });
       return;
     }
+    console.log(payload);
     const email = payload.email as string;
 
     const user = await prisma.user.findFirst({
@@ -113,7 +131,7 @@ userRouter.post("/google-signin", async (req, res) => {
         },
       });
       res.status(201).json({
-        message: "User createdsuccessfully",
+        message: "User created successfully",
         user: newUser,
       });
     } else {
@@ -132,3 +150,20 @@ userRouter.post("/google-signin", async (req, res) => {
     });
   }
 });
+
+userRouter.post("/send-otp", async (req, res) => {
+  const { email, type } = req.body;
+  if (!email || !type || !["signup", "signin"].includes(type)) {
+    res.status(400).json({
+      message: "email and type are required",
+    });
+    return;
+  }
+  const otp = Math.floor(100000 + Math.random() * 900000).toString();
+  await redis.set(email, JSON.stringify({ otp, type }), { EX: 60 * 15 });
+  await redis.xAdd("email_otp_notifications", "*", { email, otp, type });
+  res.status(200).json({
+    message: "OTP sent successfully",
+  });
+});
+export default userRouter;
