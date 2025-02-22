@@ -1,0 +1,4 @@
+packages:
+  - main-db
+  - next_app
+  - auth-service
