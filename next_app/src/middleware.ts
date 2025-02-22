@@ -32,9 +32,8 @@ export default NextAuth(authConfig).auth(async (req) => {
   }
 
   if (!isLoggedIn && !isPublicRoute) {
-    console.log("auth in the middleware was ", req.auth);
     return Response.redirect(
-      nextUrl.origin + "/login?callbackUrl=" + nextUrl.href,
+      nextUrl.origin + "/signin?callbackUrl=" + nextUrl.href,
     );
   }
 

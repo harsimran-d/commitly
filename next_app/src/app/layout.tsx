@@ -1,6 +1,6 @@
 import "@/styles/globals.css";
 import { Toaster } from "sonner";
-
+import { Analytics } from "@vercel/analytics/react";
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -11,6 +11,7 @@ export default function RootLayout({
       <body>
         {children}
         <Toaster />
+        <Analytics />
       </body>
     </html>
   );
