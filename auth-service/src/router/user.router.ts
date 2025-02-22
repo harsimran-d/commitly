@@ -14,7 +14,7 @@ const googleClient = new OAuth2Client(
 const userRouter = Router();
 
 userRouter.post("/signup", async (req, res) => {
-  const { email, otp } = req.body;
+  const { email, otp, name } = req.body;
   if (!email || !otp) {
     res.status(400).json({
       message: "email and otp are required",
