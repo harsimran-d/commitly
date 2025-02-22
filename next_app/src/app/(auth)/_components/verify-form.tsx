@@ -13,6 +13,7 @@ import {
 
 import { useSearchParams } from "next/navigation";
 import { toast } from "sonner";
+import { signIn } from "next-auth/react";
 // import { loginWithEmailAndOtp, signUpWithEmailAndOtp } from "@/actions/auth";
 
 const formSchema = z.object({
@@ -26,16 +27,19 @@ const VerifyForm = () => {
   const email = params?.get("email");
   const error = params?.get("error");
   const resendOTP = () => {
-    if (params?.get("type") === "login" && email) {
+    if (params?.get("type") === "signin" && email) {
       // sendLoginOtp(email);
     } else if (params?.get("type") === "signup" && email) {
       // sendSignupOtp(email);
     }
   };
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    if (params?.get("type") === "login" && email) {
-      console.log(data.code);
-      // await loginWithEmailAndOtp(email, data.code);
+    if (params?.get("type") === "signin" && email) {
+      const resp = await signIn("credentials", {
+        email: email,
+        password: data.code,
+      });
+      console.log("signin resp", resp);
     } else if (params?.get("type") === "signup" && email) {
       // await signUpWithEmailAndOtp(email, data.code);
     }

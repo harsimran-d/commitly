@@ -12,10 +12,10 @@ const Hero = () => {
       {/* Background Pattern */}
       <div className="absolute inset-0 opacity-20">
         <Image
-          src="https://cal.com/squares-footer.png"
+          src="/images/squares-footer.png"
           alt="Background Pattern"
           layout="fill"
-          objectFit="cover"
+          style={{ objectFit: "cover" }}
           priority
         />
       </div>

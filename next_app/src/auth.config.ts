@@ -1,44 +1,27 @@
-import { NextAuthConfig, Session, User } from 'next-auth';
-import { JWT } from 'next-auth/jwt';
-
-export interface CustomUser extends User {
-  role?: string;
-}
-
-export interface CustomSession extends Session {
-  user: CustomUser;
-}
-
-interface CustomToken extends JWT {
-  role?: string;
-}
+import { NextAuthConfig } from "next-auth";
 
 export default {
   trustHost: true,
   providers: [],
   callbacks: {
     async jwt({ token, user, account }) {
-      if (account?.provider == 'google') {
+      if (account?.provider == "google") {
         token.sub = account.providerAccountId;
-        token.role = 'USER';
+        token.role = "USER";
         return token;
       }
-      const customUser = user as CustomUser;
+
       if (user?.id) {
-        token.sub = customUser.id;
-        token.role = customUser.role;
+        token.sub = user.id;
       }
       return token;
     },
     async session({ session, token }) {
-      const customSession = session as CustomSession;
-      const customToken = token as CustomToken;
       if (token?.sub && token?.role) {
-        customSession.user = (customSession.user || {}) as CustomUser;
-        customSession.user.id = customToken.sub;
-        customSession.user.role = customToken.role;
+        session.user = session.user || {};
+        session.user.id = token.sub;
       }
-      return customSession;
+      return session;
     },
   },
 } satisfies NextAuthConfig;

@@ -28,7 +28,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
             console.log("Google signin failed");
             return undefined;
           }
-          const user = response.data.data.user;
+          const user = response.data.user;
           console.log("Google signin success");
           return { ...user };
         } catch (err) {
@@ -49,15 +49,17 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         if (validatedFields.success) {
           const { email, password } = validatedFields.data;
           try {
+            console.log("email", email);
+            console.log("password", password);
             const response = await api.post("/api/v1/user/signin", {
               email,
-              password,
+              otp: password,
             });
 
             if (response.status != 200) {
               return null;
             } else {
-              const { user } = response.data.data;
+              const { user } = response.data;
               if (user) {
                 return user;
               }

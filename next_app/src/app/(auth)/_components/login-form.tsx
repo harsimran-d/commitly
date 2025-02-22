@@ -11,8 +11,10 @@ import {
   FormMessage,
 } from "@/components/ui/form";
 
-// import { sendLoginOtp } from "@/actions/auth";
+import { useRouter } from "next/navigation";
 import { useSearchParams } from "next/navigation";
+import { api } from "@/lib/axios";
+import { toast } from "sonner";
 
 const formSchema = z.object({
   email: z
@@ -23,6 +25,7 @@ const formSchema = z.object({
 
 const LoginForm = () => {
   const params = useSearchParams();
+  const router = useRouter();
   const form = useForm<z.infer<typeof formSchema>>({
     resolver: zodResolver(formSchema),
     defaultValues: {
@@ -31,8 +34,14 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    console.log(data);
-    // await sendLoginOtp(data.email);
+    const response = await api.post("/api/v1/user/send-otp", {
+      email: data.email,
+      type: "signin",
+    });
+    if (response.status === 200) {
+      toast.success("OTP sent successfully");
+      router.push(`/signin?verify=true&email=${data.email}&type=signin`);
+    }
   };
 
   return (

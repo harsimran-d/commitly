@@ -7,7 +7,7 @@ const testimonials = [
   {
     name: "Sarah Johnson",
     role: "Entrepreneur",
-    image: "https://cal.com/ewa.jpg",
+    image: "/images/avatar.jpeg",
     quote:
       "Commitly helped me stay focused on my business goals. The daily check-ins and human accountability made all the difference. I've achieved 3x more in the last quarter!",
     rating: 5,
@@ -16,8 +16,7 @@ const testimonials = [
   {
     name: "Michael Chen",
     role: "Fitness Enthusiast",
-    image:
-      "https://www.datocms-assets.com/77432/1734384543-man-profile-picture-4.jpg",
+    image: "/images/avatar.jpeg",
     quote:
       "The automated reminders kept me consistent with my workout routine. I've never stuck to a fitness plan this long before. Thank you Commitly!",
     rating: 5,
@@ -26,8 +25,7 @@ const testimonials = [
   {
     name: "Emily Rodriguez",
     role: "Student",
-    image:
-      "https://ik.imagekit.io/senja/tr:f-jpeg/Avatars/avatar_aOgsMJ-eZ.png",
+    image: "/images/avatar.jpeg",
     quote:
       "The premium plan's human accountability coach helped me stay on track with my thesis. I finished ahead of schedule!",
     rating: 5,
@@ -100,7 +98,7 @@ const Testimonials = () => {
         >
           <a
             href="#pricing"
-            className="inline-flex animate-pulse items-center justify-center rounded-lg bg-primary px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-secondary"
+            className="inline-flex items-center justify-center rounded-lg bg-primary px-8 py-4 font-semibold text-white transition-all duration-300 hover:bg-[#011110]"
           >
             Join Our Success Stories
             <svg
