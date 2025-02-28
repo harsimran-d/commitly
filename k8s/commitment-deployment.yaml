@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: commitment-service
+  namespace: commitly
+  labels:
+    app: commitment-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: commitment-service
+  template:
+    metadata:
+      labels:
+        app: commitment-service
+    spec:
+      containers:
+        - name: commitment-service
+          image: harsimrand/commitly-commitment-service:latest
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: db-secret
+                  key: url

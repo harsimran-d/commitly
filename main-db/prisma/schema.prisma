@@ -7,9 +7,81 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+enum CommitmentStatus {
+  PENDING
+  COMPLETED
+  MISSED
+  RESCHEDULED
+}
+
+enum ReminderMethod {
+  EMAIL
+  SMS
+  CALL
+}
+
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  id         String       @id @default(cuid())
+  email      String       @unique
+  createdAt  DateTime     @default(now())
+  updatedAt  DateTime     @updatedAt
+  Commitment Commitment[]
+  Reminder   Reminder[]
+}
+
+model Commitment {
+  id                String             @id @default(uuid())
+  userId            String
+  user              User               @relation(fields: [userId], references: [id])
+  title             String
+  description       String?
+  startDate         DateTime
+  frequency         Int
+  periodDuration    Int
+  reminderFrequency Int
+  isActive          Boolean            @default(true)
+  tags              Tag[]
+  commitmentPeriods CommitmentPeriod[]
+  reminders         Reminder[]
+  createdAt         DateTime           @default(now())
+  updatedAt         DateTime           @updatedAt
+}
+
+model CommitmentPeriod {
+  id           String           @id @default(uuid())
+  commitmentId String
+  commitment   Commitment       @relation(fields: [commitmentId], references: [id])
+  periodNumber Int
+  startDate    DateTime
+  endDate      DateTime
+  status       CommitmentStatus @default(PENDING)
+  logs         Log[]
+  Reminder     Reminder[]
+}
+
+model Log {
+  id                 String           @id @default(uuid())
+  commitmentPeriodId String
+  commitmentPeriod   CommitmentPeriod @relation(fields: [commitmentPeriodId], references: [id])
+  timestamp          DateTime         @default(now())
+  notes              String?
+}
+
+model Reminder {
+  id                 String            @id @default(uuid())
+  user               User              @relation(fields: [userId], references: [id])
+  userId             String
+  commitment         Commitment?       @relation(fields: [commitmentId], references: [id])
+  commitmentId       String?
+  commitmentPeriod   CommitmentPeriod? @relation(fields: [commitmentPeriodId], references: [id])
+  commitmentPeriodId String?
+  message            String
+  sentAt             DateTime
+  contactMethod      ReminderMethod
+}
+
+model Tag {
+  id          String       @id @default(uuid())
+  name        String       @unique
+  commitments Commitment[]
 }

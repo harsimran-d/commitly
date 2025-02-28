@@ -2,3 +2,5 @@ packages:
   - main-db
   - next_app
   - auth-service
+  - email-service
+  - commitment-service
