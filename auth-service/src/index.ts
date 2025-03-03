@@ -3,7 +3,7 @@ import cors from "cors";
 import { configDotenv } from "dotenv";
 import express from "express";
 
-import userRouter from "./router/user.router";
+import userRouter from "./router/user.router.ts";
 
 configDotenv();
 
@@ -14,11 +14,11 @@ app.use(express.json());
 app.use(
   cors({
     credentials: true,
-    origin: process.env.FRONTEND_URL || "http://localhost:3000/",
+    origin: process.env.FRONTEND_URL || "http://localhost/",
   })
 );
 
-app.use("/api/v1/user", userRouter);
+app.use("/api/v1/auth/user", userRouter);
 
 app.use((req, res) => {
   res.status(404).json({

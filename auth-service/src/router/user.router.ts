@@ -2,10 +2,30 @@ import { Router } from "express";
 import { prisma } from "main-db";
 import { OAuth2Client } from "google-auth-library";
 import { createClient } from "redis";
-const redis = createClient();
-redis.on("error", (err) => console.log("Redis Client Error", err));
+const redis = createClient({
+  url: `redis://${process.env.REDIS_HOST || "localhost"}:${process.env.REDIS_PORT || 6379}`,
+});
+redis.on("error", (err) => {
+  console.error("Redis Client Error:", err);
 
-await redis.connect();
+  if (err.code == "ECONNREFUSED") {
+    console.log("Redis server is not running.");
+    console.log("Please start the Redis server.");
+    process.exit(1);
+  }
+});
+async function initializeRedis() {
+  try {
+    await redis.connect();
+    console.log("Redis connected successfully");
+  } catch (err) {
+    console.error("Redis Connection Error:", err);
+    console.log("Please ensure the Redis server is running.");
+    process.exit(1);
+  }
+}
+
+await initializeRedis();
 
 const googleClient = new OAuth2Client(
   process.env.GOOGLE_CLIENT_ID!,
