@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: internal-proxy
+  namespace: commitly
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: internal-proxy
+  template:
+    metadata:
+      labels:
+        app: internal-proxy
+    spec:
+      containers:
+        - name: nginx
+          image: nginx:latest
+          volumeMounts:
+            - name: config-volume
+              mountPath: /etc/nginx/nginx.conf
+              subPath: nginx.conf
+      volumes:
+        - name: config-volume
+          configMap:
+            name: internal-proxy-config
