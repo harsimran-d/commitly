@@ -8,7 +8,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
-app.use("/api/reminders", authMiddleware, reminderRoutes);
+app.use("/api/v1/reminders", authMiddleware, reminderRoutes);
 
 app.get("/", (req, res) => {
   res.json({ message: "Reminder Service Running!" });

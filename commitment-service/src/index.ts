@@ -18,3 +18,8 @@ app.get("/", (req, res) => {
     message: "Commitment Service Running!",
   });
 });
+
+const PORT = process.env.PORT || 8080;
+app.listen(PORT, () => {
+  console.log(`✅ Commitment Service running on port ${PORT}`);
+});
