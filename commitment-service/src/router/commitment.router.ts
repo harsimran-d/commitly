@@ -6,7 +6,7 @@ import {
   getCommitmentById,
   getCommitments,
   updateCommitment,
-} from "../controllers/commitment.controller";
+} from "../controllers/commitment.controller.ts";
 
 const router = express.Router();
 router.get("/", getCommitments);

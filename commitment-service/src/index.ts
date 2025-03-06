@@ -2,8 +2,8 @@ import { configDotenv } from "dotenv";
 import express from "express";
 import cors from "cors";
 
-import commitmentRouter from "./router/commitment.router";
-import { authMiddleware } from "./middleware";
+import commitmentRouter from "./router/commitment.router.ts";
+import { authMiddleware } from "./middleware/index.ts";
 
 configDotenv();
 
