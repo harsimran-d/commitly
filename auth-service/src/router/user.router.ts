@@ -3,7 +3,7 @@ import { prisma } from "main-db";
 import { OAuth2Client } from "google-auth-library";
 import { createClient } from "redis";
 const redis = createClient({
-  url: `redis://${process.env.REDIS_HOST || "localhost"}:${process.env.REDIS_PORT || 6379}`,
+  url: `redis://redis:6379`,
 });
 redis.on("error", (err) => {
   console.error("Redis Client Error:", err);
