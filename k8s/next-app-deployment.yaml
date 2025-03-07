@@ -17,10 +17,15 @@ spec:
     spec:
       containers:
         - name: next-app
-          image: harsimrand/commitly-next-app:latest
+          image: harsimrand/commitly-next-app:v0
           ports:
             - containerPort: 3000
           env:
+            - name: AUTH_URL
+              valueFrom:
+                secretKeyRef:
+                  name: next-app-secret
+                  key: AUTH_URL
             - name: AUTH_SECRET
               valueFrom:
                 secretKeyRef:

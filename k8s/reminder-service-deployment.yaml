@@ -1,0 +1,35 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: reminder-service
+  namespace: commitly
+  labels:
+    app: reminder-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: reminder-service
+  template:
+    metadata:
+      labels:
+        app: reminder-service
+    spec:
+      containers:
+        - name: reminder-service
+          image: harsimrand/commitly-reminder-service:v0-2
+          ports:
+            - containerPort: 9000
+          env:
+            - name: REDIS_HOST
+              value: redis
+            - name: DATABASE_URL
+              valueFrom:
+                secretKeyRef:
+                  name: main-db-secret
+                  key: DATABASE_URL
+            - name: SENDGRID_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: reminder-service-secret
+                  key: SENDGRID_API_KEY

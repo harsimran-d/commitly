@@ -17,12 +17,10 @@ spec:
     spec:
       containers:
         - name: auth-service
-          image: harsimrand/commitly-auth-service:latest
+          image: harsimrand/commitly-auth-service:v0-1
           ports:
             - containerPort: 9000
           env:
-            - name: REDIS_HOST
-              value: auth-redis-cache
             - name: DATABASE_URL
               valueFrom:
                 secretKeyRef:

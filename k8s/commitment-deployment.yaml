@@ -17,7 +17,7 @@ spec:
     spec:
       containers:
         - name: commitment-service
-          image: harsimrand/commitly-commitment-service:latest
+          image: harsimrand/commitly-commitment-service:v0-3
           ports:
             - containerPort: 8080
           env:

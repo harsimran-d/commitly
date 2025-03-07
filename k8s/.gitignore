@@ -1,3 +1,5 @@
 auth-service-secret.yaml
+email-service-secret.yaml
 main-db-secret.yaml
 next-app-secret.yaml
+reminder-service-secret.yaml

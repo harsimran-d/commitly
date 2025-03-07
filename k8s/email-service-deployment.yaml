@@ -1,0 +1,28 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: email-service
+  namespace: commitly
+  labels:
+    app: email-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: email-service
+  template:
+    metadata:
+      labels:
+        app: email-service
+    spec:
+      containers:
+        - name: email-service
+          image: harsimrand/commitly-email-service:v0-1
+          env:
+            - name: REDIS_HOST
+              value: redis
+            - name: SENDGRID_API_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: email-service-secret
+                  key: SENDGRID_API_KEY
