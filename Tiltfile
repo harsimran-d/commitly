@@ -1,5 +1,6 @@
 k8s_yaml("./k8s/next-app-service.yaml")
-k8s_yaml("./k8s/next-app-secret.yaml")
+k8s_yaml("./k8s_local/next-app-secret.yaml")
+k8s_yaml("./k8s_local/main-db-secret.yaml")
 docker_build("harsimrand/commitly-next-app", "./next_app")
 k8s_yaml("./k8s/next-app-deployment.yaml")
 k8s_yaml("./k8s/internal-proxy-config.yaml")
