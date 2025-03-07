@@ -37,7 +37,7 @@ export default NextAuth(authConfig).auth(async (req) => {
     );
   }
 
-  if (isLoggedIn && nextUrl.pathname === "/") {
+  if (isLoggedIn && isPublicRoute) {
     return Response.redirect(nextUrl.origin + "/dashboard");
   }
 

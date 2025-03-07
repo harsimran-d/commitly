@@ -9,7 +9,7 @@ const nextConfig: NextConfig = {
       },
       {
         source: "/api/:path*",
-        destination: "http://localhost:9000/api/:path*",
+        destination: "http://internal-proxy/api/:path*",
       },
     ];
   },

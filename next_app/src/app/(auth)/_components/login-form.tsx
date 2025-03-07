@@ -34,7 +34,7 @@ const LoginForm = () => {
   });
 
   const onSubmit = async (data: z.infer<typeof formSchema>) => {
-    const response = await api.post("/api/v1/user/send-otp", {
+    const response = await api.post("/api/v1/auth/user/send-otp", {
       email: data.email,
       type: "signin",
     });
