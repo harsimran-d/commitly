@@ -1,0 +1,1 @@
+{"root":["./src/index.ts","./src/controllers/reminder.controller.ts","./src/middleware/index.ts","./src/routes/reminder.routes.ts","./src/workers/reminder.worker.ts"],"version":"5.8.2"}
