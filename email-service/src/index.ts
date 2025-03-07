@@ -6,7 +6,7 @@ configDotenv();
 sendgrid.setApiKey(process.env.SENDGRID_API_KEY!);
 
 const client = redis.createClient({
-  url: `redis://${process.env.REDIS_HOST || "localhost"}:${process.env.REDIS_PORT || 6379}`,
+  url: `redis://redis:6379`,
 });
 const streamName = "email_otp_notifications";
 const groupName = "email_service_group";
